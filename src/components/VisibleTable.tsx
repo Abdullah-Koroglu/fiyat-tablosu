@@ -30,7 +30,7 @@ const VisibleTable = ({
           <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
             <div className="flex items-center gap-4">
               <div className="bg-white/20 p-3 rounded-lg backdrop-blur-sm">
-                <img src="/logo.png" alt="logo" className="w-12 h-12 object-contain" />
+                <img src="logo.png" alt="logo" className="w-12 h-12 object-contain" />
               </div>
               <div>
                 <h2 className="text-xl font-bold">Rezervasyon Detayları</h2>
