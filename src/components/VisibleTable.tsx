@@ -35,8 +35,8 @@ const VisibleTable = ({
                 <img src="logo.png" alt="logo" className="w-12 h-12 object-contain" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">info@helaltrip.com</h2>
-                <p className="text-blue-100 text-sm">+90 533 818 99 58</p>
+                <h2 className="text-xl font-bold">+90 533 818 99 58</h2>
+                <p className="text-blue-100 text-sm">info@helaltrip.com</p>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@ const VisibleTable = ({
 
         <CardContent className="p-6">
           {/* Booking Details */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
               <div className="bg-green-100 p-2 rounded-full">
                 <CalendarDays className="w-4 h-4 text-green-600" />
