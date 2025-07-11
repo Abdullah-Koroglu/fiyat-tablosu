@@ -35,8 +35,8 @@ const VisibleTable = ({
                 <img src="logo.png" alt="logo" className="w-12 h-12 object-contain" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Rezervasyon Detayları</h2>
-                <p className="text-blue-100 text-sm">Otel fiyat karşılaştırması</p>
+                <h2 className="text-xl font-bold">info@helaltrip.com</h2>
+                <p className="text-blue-100 text-sm">+90 533 818 99 58</p>
               </div>
             </div>
           </div>

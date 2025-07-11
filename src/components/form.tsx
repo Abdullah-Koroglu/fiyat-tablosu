@@ -60,7 +60,10 @@ const Form = ({
         <div className='flex flex-col gap-2 w-full'>
           <div className='flex flex-col gap-2 w-full'>
             <Label>Cocuk Sayisi</Label>
-            <Input type="number" value={childCount} onChange={(e: any) => setChildCount(Number(e.target.value))} />
+            <Input type="number" value={childCount} onChange={(e: any) => {
+              setChildCount(Number(e.target.value))
+              setChildrenAges(Array(Number(e.target.value)).fill(0))
+            }} />
           </div>
         </div>
         {
