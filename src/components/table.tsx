@@ -3,14 +3,15 @@ import React from 'react'
 import { Input } from './ui/input'
 import { Trash2 } from 'lucide-react'
 import { Button } from './ui/button'
-import { discountTable } from '@/app/page'
 
 const HotelTable = ({
   rows,
-  setRows
+  setRows,
+  discountTable
 }: {
   rows: any,
-  setRows: (rows: any) => void
+  setRows: (rows: any) => void,
+  discountTable: any
 }) => {
   return (
     <Table className='w-full max-w-5xl mx-auto bg-gray-100 rounded-md p-4'>

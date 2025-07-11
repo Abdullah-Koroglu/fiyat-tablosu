@@ -21,7 +21,7 @@ const hotels = [
   "Rizom Tatil Köyü",
 ]
 
-export const discountTable = [
+const discountTable = [
   {
     hotel: "Wome Deluxe",
     discount: 15
@@ -88,7 +88,11 @@ export default function Home() {
         hotels={hotels} 
         rows={rows} 
         setRows={setRows} />
-      <HotelTable rows={rows} setRows={setRows} />
+      <HotelTable 
+        rows={rows} 
+        setRows={setRows} 
+        discountTable={discountTable} 
+      />
       <div className="flex justify-center mt-4 mb-4 ">
         <Button onClick={() => {
           html2canvas(tableRef.current as HTMLElement).then((canvas: any) => {
