@@ -16,7 +16,9 @@ const Form = ({
   setChildCount, 
   hotels,
   rows,
-  setRows
+  setRows,
+  childrenAges,
+  setChildrenAges
  }: { 
   checkIn: string, 
   setCheckIn: (checkIn: string) => void, 
@@ -28,7 +30,9 @@ const Form = ({
   setChildCount: (childCount: number) => void, 
   hotels: string[],
   rows: any,
-  setRows: (rows: any) => void
+  setRows: (rows: any) => void,
+  childrenAges: number[],
+  setChildrenAges: (childrenAges: number[]) => void
 }) => {
 
 
@@ -59,6 +63,18 @@ const Form = ({
             <Input type="number" value={childCount} onChange={(e: any) => setChildCount(Number(e.target.value))} />
           </div>
         </div>
+        {
+          childCount > 0 && (
+            <div className='flex flex-col gap-2 w-full'>
+              <Label>Cocuk Yaşları</Label>
+              {
+                childrenAges.map((age, index) => (
+                  <Input type="number" value={age} onChange={(e: any) => setChildrenAges(childrenAges.map((age, i) => i === index ? Number(e.target.value) : age))} />
+                ))
+              }
+            </div>
+          ) 
+        }
         {/* otel ekle */}
         <div className='flex flex-col gap-2 w-full'>
           <Select onValueChange={(value) => setRows([...rows, {hotel: value}])}  >

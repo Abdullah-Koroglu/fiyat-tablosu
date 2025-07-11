@@ -74,6 +74,8 @@ export default function Home() {
   const [adultCount, setAdultCount] = useState<number>(0)
   const [childCount, setChildCount] = useState<number>(0)
   const [rows, setRows] = useState<any>([])
+  const [childrenAges, setChildrenAges] = useState<number[]>([])
+
   const tableRef = useRef<HTMLDivElement>(null)
 
   return (
@@ -87,7 +89,10 @@ export default function Home() {
         setAdultCount={setAdultCount} childCount={childCount} setChildCount={setChildCount} 
         hotels={hotels} 
         rows={rows} 
-        setRows={setRows} />
+        setRows={setRows} 
+        childrenAges={childrenAges}
+        setChildrenAges={setChildrenAges}
+        />
       <HotelTable 
         rows={rows} 
         setRows={setRows} 
@@ -105,7 +110,14 @@ export default function Home() {
           Tabloyu PDF'e çevir
         </Button>
       </div>
-      <VisibleTable rows={rows} adultCount={adultCount} childCount={childCount} checkIn={checkIn} checkOut={checkOut} tableRef={tableRef}/>
+      <VisibleTable 
+        rows={rows} 
+        adultCount={adultCount} 
+        childCount={childCount} 
+        checkIn={checkIn} 
+        checkOut={checkOut} 
+        tableRef={tableRef}
+        childrenAges={childrenAges}/>
     </div>
   );
 }

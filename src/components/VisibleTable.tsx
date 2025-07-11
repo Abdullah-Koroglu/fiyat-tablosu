@@ -13,6 +13,7 @@ const VisibleTable = ({
   checkIn,
   checkOut,
   tableRef,
+  childrenAges
 }: {
   rows: any
   adultCount: number
@@ -20,6 +21,7 @@ const VisibleTable = ({
   checkIn: string
   checkOut: string
   tableRef: React.RefObject<HTMLDivElement | null>
+  childrenAges: number[]
 }) => {
   const nightCount = dayjs(checkOut).diff(dayjs(checkIn), "day")
 
@@ -92,6 +94,19 @@ const VisibleTable = ({
                 <p className="font-semibold text-gray-800">{childCount}</p>
               </div>
             </div>
+            {
+              childCount > 0 && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center gap-3">
+                  <div className="bg-yellow-100 p-2 rounded-full">
+                    <Baby className="w-4 h-4 text-yellow-600" />
+                  </div>
+                  <div>
+                    <Label className="text-xs text-yellow-600 font-medium uppercase tracking-wide">Çocuk Yaşları</Label>
+                    <p className="font-semibold text-gray-800">{childrenAges.join(", ")}</p>
+                  </div>
+                </div>
+              )
+            }
           </div>
 
           {/* Hotels Table */}
