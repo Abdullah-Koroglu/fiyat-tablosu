@@ -15,7 +15,7 @@ const hotels = [
   "The Oba",
   "Adin Beach",
   "Bera Alanya",
-  "Rizom Beach",
+  "Rizom Beach Kumluca",
   "Selge Beach",
   "Royal Teos",
   "Rizom Tatil Köyü",
@@ -51,7 +51,7 @@ const discountTable = [
     discount: 15,
   },
   {
-    hotel: "Rizom Beach",
+    hotel: "Rizom Beach Kumluca",
     discount: 15,
   },
   {

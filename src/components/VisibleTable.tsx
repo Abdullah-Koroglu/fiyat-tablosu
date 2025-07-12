@@ -44,7 +44,7 @@ const VisibleTable = ({
 
         <CardContent className="p-6">
           {/* Booking Details */}
-          <div className={`grid grid-cols-2  md:grid-cols-${childCount > 0 ? "6" : "5"}   gap-4 mb-8`}>
+          <div className={`grid grid-cols-2  ${childCount > 0 ? "md:grid-cols-6" : "md:grid-cols-5"}   gap-4 mb-8`}>
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
               <div className="bg-green-100 p-2 rounded-full">
                 <CalendarDays className="w-4 h-4 text-green-600" />

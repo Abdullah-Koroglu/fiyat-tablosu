@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
+import { Button } from './ui/button'
 
 
 const Form = ({ 
@@ -34,6 +35,16 @@ const Form = ({
   childrenAges: number[],
   setChildrenAges: (childrenAges: number[]) => void
 }) => {
+  const [freeFormat, setFreeFormat] = useState("")
+
+  const handleFreeFormat = (e: any) => {
+    setFreeFormat(e.target.value)
+  }
+
+  const handleAddFreeFormat = () => {
+    setRows([...rows, {hotel: freeFormat}])
+    setFreeFormat("")
+  }
 
 
   return (
@@ -92,6 +103,10 @@ const Form = ({
               ))}
             </SelectContent>
           </Select>
+
+          {/* free format  */}
+          <Input type="text" placeholder='Otel Seçiniz' value={freeFormat} onChange={handleFreeFormat} />
+          <Button onClick={handleAddFreeFormat}>Otel Ekle</Button>
 
         </div>
       </div>
