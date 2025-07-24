@@ -4,7 +4,8 @@ import HotelTable from "@/components/table";
 import { Button } from "@/components/ui/button";
 import VisibleTable from "@/components/VisibleTable";
 import html2canvas from "html2canvas-pro";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 
 const hotels = [
@@ -69,6 +70,9 @@ const discountTable = [
 ]
 
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
   const [checkIn, setCheckIn] = useState<string>("")
   const [checkOut, setCheckOut] = useState<string>("")
   const [adultCount, setAdultCount] = useState<number>(0)
@@ -78,24 +82,99 @@ export default function Home() {
 
   const tableRef = useRef<HTMLDivElement>(null)
 
+  // URL'den verileri yükle
+  useEffect(() => {
+    const urlCheckIn = searchParams.get('checkIn') || "";
+    const urlCheckOut = searchParams.get('checkOut') || "";
+    const urlAdultCount = parseInt(searchParams.get('adultCount') || "0");
+    const urlChildCount = parseInt(searchParams.get('childCount') || "0");
+    const urlChildrenAges = searchParams.get('childrenAges') ? 
+      JSON.parse(decodeURIComponent(searchParams.get('childrenAges')!)) : [];
+    const urlRows = searchParams.get('rows') ? 
+      JSON.parse(decodeURIComponent(searchParams.get('rows')!)) : [];
+
+    setCheckIn(urlCheckIn);
+    setCheckOut(urlCheckOut);
+    setAdultCount(urlAdultCount);
+    setChildCount(urlChildCount);
+    setChildrenAges(urlChildrenAges);
+    setRows(urlRows);
+  }, [searchParams]);
+
+  // URL'yi güncelle
+  const updateURL = (newData: {
+    checkIn?: string;
+    checkOut?: string;
+    adultCount?: number;
+    childCount?: number;
+    childrenAges?: number[];
+    rows?: any[];
+  }) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (newData.checkIn !== undefined) params.set('checkIn', newData.checkIn);
+    if (newData.checkOut !== undefined) params.set('checkOut', newData.checkOut);
+    if (newData.adultCount !== undefined) params.set('adultCount', newData.adultCount.toString());
+    if (newData.childCount !== undefined) params.set('childCount', newData.childCount.toString());
+    if (newData.childrenAges !== undefined) params.set('childrenAges', encodeURIComponent(JSON.stringify(newData.childrenAges)));
+    if (newData.rows !== undefined) params.set('rows', encodeURIComponent(JSON.stringify(newData.rows)));
+
+    router.push(`?${params.toString()}`);
+  };
+
+  // State güncelleme fonksiyonları
+  const handleCheckInChange = (value: string) => {
+    setCheckIn(value);
+    updateURL({ checkIn: value });
+  };
+
+  const handleCheckOutChange = (value: string) => {
+    setCheckOut(value);
+    updateURL({ checkOut: value });
+  };
+
+  const handleAdultCountChange = (value: number) => {
+    setAdultCount(value);
+    updateURL({ adultCount: value });
+  };
+
+  const handleChildCountChange = (value: number) => {
+    setChildCount(value);
+    const newChildrenAges = Array(value).fill(0);
+    setChildrenAges(newChildrenAges);
+    updateURL({ childCount: value, childrenAges: newChildrenAges });
+  };
+
+  const handleChildrenAgesChange = (value: number[]) => {
+    setChildrenAges(value);
+    updateURL({ childrenAges: value });
+  };
+
+  const handleRowsChange = (value: any[]) => {
+    setRows(value);
+    updateURL({ rows: value });
+  };
+
   return (
     <div>
       <Form 
         checkIn={checkIn} 
-        setCheckIn={setCheckIn} 
+        setCheckIn={handleCheckInChange} 
         checkOut={checkOut} 
-        setCheckOut={setCheckOut} 
+        setCheckOut={handleCheckOutChange} 
         adultCount={adultCount} 
-        setAdultCount={setAdultCount} childCount={childCount} setChildCount={setChildCount} 
+        setAdultCount={handleAdultCountChange} 
+        childCount={childCount} 
+        setChildCount={handleChildCountChange} 
         hotels={hotels} 
         rows={rows} 
-        setRows={setRows} 
+        setRows={handleRowsChange} 
         childrenAges={childrenAges}
-        setChildrenAges={setChildrenAges}
+        setChildrenAges={handleChildrenAgesChange}
         />
       <HotelTable 
         rows={rows} 
-        setRows={setRows} 
+        setRows={handleRowsChange} 
         discountTable={discountTable} 
       />
       <div className="flex justify-center mt-4 mb-4 ">
