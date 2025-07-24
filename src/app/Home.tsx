@@ -29,7 +29,7 @@ const discountTable = [
   },
   {
     hotel: "Angel's Marmaris",
-    discount: 15
+    discount: 10
   },
   {
     hotel: "Adenya Resort",
@@ -61,7 +61,7 @@ const discountTable = [
   },
   {
     hotel: "Royal Teos",
-    discount: 15,
+    discount: 25,
   },
   {
     hotel: "Rizom Tatil Köyü",
@@ -92,15 +92,15 @@ export default function Home() {
       const urlChildCount = parseInt(searchParams.get('childCount') || "0");
       const urlChildrenAges = searchParams.get('childrenAges') ?
         JSON.parse(decodeURIComponent(searchParams.get('childrenAges')!)) : [];
-      // const urlRows = searchParams.get('rows') ?
-      //   JSON.parse(decodeURIComponent(searchParams.get('rows')!)) : [];
+      const urlRows = searchParams.get('rows') ?
+        JSON.parse(decodeURIComponent(searchParams.get('rows')!)) : [];
 
       setCheckIn(urlCheckIn);
       setCheckOut(urlCheckOut);
       setAdultCount(urlAdultCount);
       setChildCount(urlChildCount);
       setChildrenAges(urlChildrenAges);
-      // setRows(urlRows);
+      setRows(urlRows);
       setTakeEffectFromUrl(false)
     }
   }, [searchParams]);
@@ -115,7 +115,6 @@ export default function Home() {
     rows?: any[];
     updateHotels?: boolean;
   }) => {
-    console.log({params, newData});
     if (newData.updateHotels === false) return
     let newParams = new URLSearchParams(params)
     if (newData.checkIn !== undefined) newParams.set('checkIn', newData.checkIn);
@@ -123,15 +122,15 @@ export default function Home() {
     if (newData.adultCount !== undefined) newParams.set('adultCount', newData.adultCount.toString());
     if (newData.childCount !== undefined) newParams.set('childCount', newData.childCount.toString());
     if (newData.childrenAges !== undefined) newParams.set('childrenAges', encodeURIComponent(JSON.stringify(newData.childrenAges)));
-    // if (newData.rows !== undefined && newData.updateHotels) params.rows = encodeURIComponent(JSON.stringify(newData.rows));
+    if (newData.rows !== undefined && newData.updateHotels) newParams.set('rows', encodeURIComponent(JSON.stringify(newData.rows)));
 
     if (newData.checkIn !== undefined) params.checkIn = newData.checkIn
     if (newData.checkOut !== undefined) params.checkOut = newData.checkOut
     if (newData.adultCount !== undefined) params.adultCount = newData.adultCount.toString()
     if (newData.childCount !== undefined) params.childCount = newData.childCount.toString()
     if (newData.childrenAges !== undefined) params.childrenAges = encodeURIComponent(JSON.stringify(newData.childrenAges))
+    if (newData.rows !== undefined && newData.updateHotels) params.rows = encodeURIComponent(JSON.stringify(newData.rows))
 
-    console.log({newParams: newParams.toString()});
     router.push(`?${newParams.toString()}`);
   };
 

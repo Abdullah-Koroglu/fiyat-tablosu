@@ -33,7 +33,7 @@ const Form = ({
   setChildCount: (childCount: number) => void, 
   hotels: string[],
   rows: any,
-  setRows: (rows: any) => void,
+  setRows: (rows: any,) => void,
   childrenAges: number[],
   setChildrenAges: (childrenAges: number[]) => void
 }) => {
@@ -57,8 +57,6 @@ const Form = ({
   const handleApplyRawInput = async () => {
     try {
       const data = JSON.parse(rawInput)
-      console.log({data});
-      
       if (data.checkIn) {
         await sleep(200)
         setCheckIn(data.checkIn)
@@ -79,10 +77,10 @@ const Form = ({
         await sleep(200)
         setChildrenAges(data.childrenAges)
       }
-      // if (data.rows) {
-      //   await sleep(200)
-      //   setRows(data.rows)
-      // }
+      if (data.rows) {
+        await sleep(200)
+        setRows(data.rows)
+      }
       
       setRawInput("")
       // alert("Veriler başarıyla uygulandı!")
