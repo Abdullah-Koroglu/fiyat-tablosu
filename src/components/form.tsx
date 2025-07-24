@@ -6,6 +6,8 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
 const Form = ({ 
   checkIn, 
   setCheckIn, 
@@ -52,19 +54,38 @@ const Form = ({
     setRawInput(e.target.value)
   }
 
-  const handleApplyRawInput = () => {
+  const handleApplyRawInput = async () => {
     try {
       const data = JSON.parse(rawInput)
+      console.log({data});
       
-      if (data.checkIn) setCheckIn(data.checkIn)
-      if (data.checkOut) setCheckOut(data.checkOut)
-      if (data.adultCount !== undefined) setAdultCount(data.adultCount)
-      if (data.childCount !== undefined) setChildCount(data.childCount)
-      if (data.childrenAges) setChildrenAges(data.childrenAges)
-      if (data.rows) setRows(data.rows)
+      if (data.checkIn) {
+        await sleep(200)
+        setCheckIn(data.checkIn)
+      }
+      if (data.checkOut) {
+        await sleep(200)
+        setCheckOut(data.checkOut)
+      }
+      if (data.adultCount !== undefined) {
+        await sleep(200)
+        setAdultCount(data.adultCount)
+      }
+      if (data.childCount !== undefined) {
+        await sleep(200)
+        setChildCount(data.childCount)
+      }
+      if (data.childrenAges) {
+        await sleep(200)
+        setChildrenAges(data.childrenAges)
+      }
+      // if (data.rows) {
+      //   await sleep(200)
+      //   setRows(data.rows)
+      // }
       
       setRawInput("")
-      alert("Veriler başarıyla uygulandı!")
+      // alert("Veriler başarıyla uygulandı!")
     } catch (error) {
       alert("JSON formatı hatalı! Lütfen doğru format kullanın.")
       console.error("JSON parse error:", error)
