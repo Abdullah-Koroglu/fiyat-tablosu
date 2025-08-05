@@ -19,7 +19,7 @@ const hotels = [
   "Rizom Beach Kumluca",
   "Selge Beach",
   "Royal Teos",
-  "Rizom Tatil Köyü",
+  "Rizom Assos Çanakkale",
 ]
 
 const discountTable = [
@@ -64,7 +64,7 @@ const discountTable = [
     discount: 25,
   },
   {
-    hotel: "Rizom Tatil Köyü",
+    hotel: "Rizom Assos Çanakkale",
     discount: 15,
   },
 ]

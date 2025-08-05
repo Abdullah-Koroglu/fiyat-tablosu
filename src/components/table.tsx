@@ -36,7 +36,7 @@ const HotelTable = ({
                 {/* <span>%</span> */}
               </TableCell>
               <TableCell>
-                <Input type="number" value={row.cost} onChange={(e: any) => setRows(rows.map((thisRow: any) => thisRow.hotel === row.hotel ? { ...thisRow, cost: e.target.value } : thisRow))} />
+                <Input type="number" value={row.cost} onChange={(e: any) => setRows(rows.map((thisRow: any) => thisRow.hotel === row.hotel ? { ...thisRow, cost: e.target.value.replace(/\./g, '') } : thisRow))} />
                 {/* <span>₺</span> */}
               </TableCell>
               <TableCell>
